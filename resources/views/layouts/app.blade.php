@@ -14,19 +14,24 @@
   </head>
 
   <body class="bg-[#222222] text-[#eeeeee]">
-    <header class="bg-[#333333] p-4">
+    <header class="bg-[#333333] p-2">
       <div class="container mx-auto flex justify-between items-center p-4">
         <div>
-          <h1 class="text-3xl font-black">CatAdoptions</h1>
+          <a href="{{ route('welcome') }}">
+            <h1 class="text-3xl font-black">CatAdoptions</h1>
+          </a>
         </div>
         <nav class="flex items-center gap-5">
-          <a href="#" class="font-bold uppercase text-gray-300">Login</a>
-          <a href="#" class="font-bold uppercase text-gray-300">Register</a>
+          <a href="{{ route('login.create') }}" class="font-bold uppercase text-gray-300">Login</a>
+          <a href="{{ route('register.create') }}" class="font-bold uppercase text-gray-300">Register</a>
         </nav>
       </div>
     </header>
 
-    <main class="container mx-auto mt-10">
+    <main class="container mx-auto mt-14">
+      <h2 class="text-3xl font-black text-center mb-10">
+        @yield('title')
+      </h2>
       @yield('content')
     </main>
   </body>
