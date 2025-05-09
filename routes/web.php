@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => view('welcome'))->name('welcome');
+Route::get('/', fn () => view('home'))->name('home');
 
 Route::get('/register', fn () => view('auth.register'))->name('register.create');
 Route::post('/register', fn () => response("POST ".route('register.store')))->name('register.store');

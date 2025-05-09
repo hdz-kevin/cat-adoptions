@@ -17,7 +17,7 @@
     <header class="bg-[#333333] p-2">
       <div class="container mx-auto flex justify-between items-center p-4">
         <div>
-          <a href="{{ route('welcome') }}">
+          <a href="{{ route('home') }}">
             <h1 class="text-3xl font-black">CatAdoptions</h1>
           </a>
         </div>
