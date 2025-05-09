@@ -22,8 +22,8 @@
           </a>
         </div>
         <nav class="flex items-center gap-5">
-          <a href="{{ route('login.create') }}" class="font-bold uppercase text-gray-300">Login</a>
-          <a href="{{ route('register.create') }}" class="font-bold uppercase text-gray-300">Register</a>
+          <a href="{{ route('login') }}" class="font-bold uppercase text-gray-300">Login</a>
+          <a href="{{ route('register') }}" class="font-bold uppercase text-gray-300">Register</a>
         </nav>
       </div>
     </header>

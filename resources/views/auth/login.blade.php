@@ -5,7 +5,7 @@
 @section('content')
 <div class="md:flex md:justify-center md:items-center mt-15">
   <div class="md:w-4/12 bg-[#333333] p-6 rounded-lg shadow-xl">
-    <form action="{{ route('login.store') }}" method="POST" novalidate>
+    <form action="{{ route('login') }}" method="POST" novalidate>
       @csrf
 
       <div class="mb-5">

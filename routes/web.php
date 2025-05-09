@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('home'))->name('home');
 
-Route::get('/register', fn () => view('auth.register'))->name('register.create');
-Route::post('/register', fn () => response("POST ".route('register.store')))->name('register.store');
+Route::get('/register', fn () => view('auth.register'))->name('register');
+Route::post('/register', fn () => response("POST ".route('register')));
 
-Route::get('/login', fn () => view('auth.login'))->name('login.create');
-Route::post('/login', fn () => response("POST ".route('login.store')))->name('login.store');
+Route::get('/login', fn () => view('auth.login'))->name('login');
+Route::post('/login', fn () => response("POST ".route('login.store')));
