@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +22,9 @@
           </a>
         </div>
         <nav class="flex items-center gap-5">
+          @if (auth()->user())
+            <p class="text-[17px] text-gray-100 mr-2">{{ auth()->user()->username }}</p>
+          @endif
           <a href="{{ route('login') }}" class="font-bold uppercase text-gray-300">Login</a>
           <a href="{{ route('register') }}" class="font-bold uppercase text-gray-300">Register</a>
         </nav>

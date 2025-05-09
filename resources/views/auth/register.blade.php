@@ -16,7 +16,8 @@
             type="text"
             placeholder="Tu Nombre"
             value="{{ old('name') }}"
-            class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            {{-- class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none" --}}
+            class="input-autofill p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
             autofocus
           />
 
@@ -33,7 +34,7 @@
             type="text"
             placeholder="Your username"
             value="{{ old('username') }}"
-            class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            class="input-autofill p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
           />
 
           @error('username')
@@ -48,7 +49,7 @@
             name="email"
             type="email"
             placeholder="Your email address"
-            class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            class="input-autofill p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
             value="{{ old('email') }}"
           />
 
@@ -64,7 +65,7 @@
             name="password"
             type="password"
             placeholder="Your password"
-            class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            class="input-autofill p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
           />
 
           @error('password')
@@ -79,7 +80,7 @@
             name="password_confirmation"
             type="password"
             placeholder="Confirm your password"
-            class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            class="input-autofill p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
           />
 
           @error('password_confirmation')

@@ -1,4 +1,28 @@
 @import "tailwindcss";
 
+.input-autofill {
+    background-color: #444444 !important;
+    color: white !important;
+    caret-color: white !important;
+}
+
+/* Sobrescribe específicamente los estilos de autocompletado */
+.input-autofill:-webkit-autofill,
+.input-autofill:-webkit-autofill:hover, 
+.input-autofill:-webkit-autofill:focus,
+.input-autofill:-webkit-autofill:active,
+.input-autofill:-internal-autofill-selected {
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0 1000px #444444 inset !important;
+    caret-color: white !important;
+    background-color: #444444 !important;
+    color: white !important;
+}
+  
+/* Estilo para el placeholder */
+.input-autofill::placeholder {
+    color: rgba(209, 213, 219, 0.7) !important; /* Equivalente a gray-400 con 70% opacidad */
+}
+  
 @source '../**/*.blade.php';
 @source '../**/*.js';
