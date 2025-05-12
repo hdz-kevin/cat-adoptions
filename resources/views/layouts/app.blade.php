@@ -23,8 +23,12 @@
         </div>
         <nav class="flex items-center gap-5">
           @auth
-            <p class="text-[17px] text-green-500 mr-2 underline">{{ auth()->user()->email }}</p>
-            <a href="#" class="font-bold uppercase text-gray-300">Logout</a>
+            <a href="#" class="text-[17px] text-green-500 underline">{{ auth()->user()->email }}</a>
+            <form action="{{ route('logout') }}" method="post">
+              @csrf
+
+              <button type="submit" class="font-bold uppercase text-gray-300 cursor-pointer">Logout</button>
+            </form>
           @endauth
           @guest
             <a href="{{ route('login') }}" class="font-bold uppercase text-gray-300">Login</a>
