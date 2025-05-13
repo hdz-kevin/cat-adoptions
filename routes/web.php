@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CatController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => view('home'))->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/register', [RegisterController::class, 'registrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
