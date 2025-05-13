@@ -10,10 +10,7 @@ class CatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +25,18 @@ class CatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request
+            ->merge(['vaccinated' => (bool) $request->vaccinated])
+            ->validate([
+                'name' => 'required|string|max:255',
+                'breed' => 'required|string|max:255',
+                'age' => 'required|numeric|min:0',
+                'vaccinated' => 'required',
+            ]);
+
+        Cat::create([...$data, 'picture' => 'test-picture.jpg']);
+
+        return redirect()->route('home');
     }
 
     /**

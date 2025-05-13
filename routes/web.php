@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CatController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +26,4 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
-Route::post('/cats', fn (Request $request) => response()->json([
-    ...$request->all(),
-    'vaccinated' => $request->get('vaccinated')
-]))->name('cats.store');
+Route::post('/cats', [CatController::class, 'store'])->name('cats.store');

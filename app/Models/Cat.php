@@ -10,12 +10,12 @@ class Cat extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'is_adopted',
         'name',
         'breed',
         'age',
-        'picture',
         'vaccinated',
+        'picture',
+        'is_adopted',
+        'user_id',
     ];
 }
