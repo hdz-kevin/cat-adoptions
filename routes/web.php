@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CatController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +22,12 @@ Route::get('/', fn () => view('home'))->name('home');
 
 Route::get('/register', [RegisterController::class, 'registrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
-
 Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
+Route::post('/cats', fn (Request $request) => response()->json([
+    ...$request->all(),
+    'vaccinated' => $request->get('vaccinated')
+]))->name('cats.store');

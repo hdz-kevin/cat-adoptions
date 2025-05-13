@@ -21,18 +21,19 @@
             <h1 class="text-3xl font-black">CatAdoptions</h1>
           </a>
         </div>
-        <nav class="flex items-center gap-5">
+        <nav class="flex items-center gap-4">
           @auth
-            <a href="#" class="text-[17px] text-green-500 underline">{{ auth()->user()->email }}</a>
+            <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[17px]">Add Cat</a>
+            <a href="#" class="underline font-medium text-[17px]">{{ auth()->user()->email }}</a>
             <form action="{{ route('logout') }}" method="post">
               @csrf
 
-              <button type="submit" class="font-bold uppercase text-gray-300 cursor-pointer">Logout</button>
+              <button type="submit" class="text-gray-300 font-medium text-[17px] cursor-pointer">Logout</button>
             </form>
           @endauth
           @guest
-            <a href="{{ route('login') }}" class="font-bold uppercase text-gray-300">Login</a>
-            <a href="{{ route('register') }}" class="font-bold uppercase text-gray-300">Register</a>
+            <a href="{{ route('login') }}" class="font-medium text-[17px] text-gray-300">Login</a>
+            <a href="{{ route('register') }}" class="font-medium text-[17px] text-gray-300">Register</a>
           @endguest
         </nav>
       </div>
