@@ -8,8 +8,7 @@
       @foreach ($cats as $cat)
         <div class="bg-[#333333] p-2 pb-4 rounded-lg">
           <div class="flex justify-center h-60 xl:h-64">
-            {{-- TODO: Load real cat picture --}}
-            <img src="{{ asset('img/cat1.webp') }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
+            <img src="{{ $cat->photo }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
           </div>
           <div class="px-3 mt-4">
             <p class="text-2xl font-medium mb-2">{{ $cat->name }}</p>

@@ -28,3 +28,4 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
 Route::post('/cats', [CatController::class, 'store'])->name('cats.store');
+Route::post('/cats/photo-upload', [CatController::class, 'photoUpload'])->name('cats.photo.upload');

@@ -18,11 +18,25 @@
     background-color: #444444 !important;
     color: white !important;
 }
-  
-/* Estilo para el placeholder */
 .input-autofill::placeholder {
-    color: rgba(209, 213, 219, 0.7) !important; /* Equivalente a gray-400 con 70% opacidad */
+    color: #d1d5dbb3 !important; /* Equivalente a gray-400 con 70% opacidad */
 }
-  
+
+/* Dropzone custom dark styles */
+.dropzone {
+    background: #444444 !important;
+    border: 2px dashed #a3a3a3 !important;
+    color: #d1d5db !important;
+}
+
+.dropzone .dz-message {
+    color: #ccd0d6 !important;
+}
+
+.dropzone .dz-preview {
+    background: #444444 !important;
+    border-radius: 0.5rem;
+}
+
 @source '../**/*.blade.php';
 @source '../**/*.js';

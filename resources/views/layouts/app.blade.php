@@ -3,8 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="_token" content="{{ csrf_token() }}">
     <title>Cat Adoptions App</title>
+
+    @stack('styles')
+
+    @stack('scripts')
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -39,8 +43,8 @@
       </div>
     </header>
 
-    <main class="container mx-auto mt-14">
-      <h2 class="text-3xl font-black text-center mb-10">
+    <main class="container mx-auto mt-10">
+      <h2 class="text-3xl font-black text-center mb-8">
         @yield('title')
       </h2>
       @yield('content')

@@ -14,7 +14,7 @@ class Cat extends Model
         'breed',
         'age',
         'vaccinated',
-        'picture',
+        'photo',
         'is_adopted',
         'user_id',
     ];

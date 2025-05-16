@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('breed');
             $table->tinyInteger('age', unsigned: true);
-            $table->string('picture');
+            $table->string('photo');
             $table->boolean('vaccinated');
             $table->timestamps();
         });
