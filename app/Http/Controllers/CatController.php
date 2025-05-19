@@ -47,7 +47,7 @@ class CatController extends Controller
     public function store(Request $request)
     {
         $data = $request
-            ->merge(['vaccinated' => (bool) $request->vaccinated])
+            ->merge(['vaccinated' => (bool) $request?->vaccinated])
             ->validate(
                 [
                     'name' => 'required|string|max:255',
@@ -76,18 +76,25 @@ class CatController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param Cat $cat
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Cat $cat)
     {
-        //
+        return view('cats.edit', compact('cat'));
     }
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param Request $request 
+     * @param Cat $cat 
+     * @return mixed
      */
     public function update(Request $request, Cat $cat)
     {
-        //
+        return response()->json($cat);
     }
 
     /**

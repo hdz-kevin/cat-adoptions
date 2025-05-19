@@ -26,6 +26,9 @@ Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+Route::post('/cats/photo-upload', [CatController::class, 'photoUpload'])->name('cats.photo.upload');
+
 Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
 Route::post('/cats', [CatController::class, 'store'])->name('cats.store');
-Route::post('/cats/photo-upload', [CatController::class, 'photoUpload'])->name('cats.photo.upload');
+Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
+Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');

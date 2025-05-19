@@ -8,13 +8,16 @@
   @vite('resources/js/create-cat.js')
 @endpush
 
-@section('title', 'Add a new Cat for Adoption')
+@section('title')
+  Editing cat 
+@endsection
 
 @section('content')
   <div class="md:flex md:justify-center md:items-center mt-12">
     <div class="md:w-4/12 bg-[#333333] p-5 rounded-lg shadow-xl">
-      <form action="{{ route('cats.store') }}" method="POST" novalidate class="form">
+      <form action="#" method="POST" novalidate class="form">
         @csrf
+        @method('PUT')
 
         <div class="mb-4">
           <label for="name" class="mb-2 block text-gray-200 font-bold">Name</label>
@@ -24,7 +27,7 @@
             type="text"
             placeholder="Cami"
             class="input-autofill p-3 w-full rounded-lg focus:border focus:border-gray-400 focus:outline-none"
-            value="{{ old('name') }}"
+            value="{{ old('name') ?? $cat->name }}"
             autofocus
           />
 
@@ -40,8 +43,8 @@
             name="breed"
             type="text"
             placeholder="Maine Coon"
-            class="input-autofill p-3 w-full rounded-lg focus:border focus:border-gray-400 focus:outline-none"
-            value="{{ old('breed') }}"
+            class="input-autofill p-3 w-full rounded-lg focus:border  focus:border-gray-400 focus:outline-none"
+            value="{{ old('breed') ?? $cat->breed }}"
             autofocus
           />
 
@@ -57,8 +60,8 @@
             name="age"
             type="number"
             placeholder="3"
-            class="input-autofill p-3 w-full rounded-lg focus:border focus:border-gray-400 focus:outline-none"
-            value="{{ old('age') }}"
+            class="input-autofill p-3 w-full rounded-lg focus:border  focus:border-gray-400 focus:outline-none"
+            value="{{ old('age') ?? $cat->age }}"
           />
 
           @error('age')
@@ -67,9 +70,17 @@
         </div>
 
         <div class="mb-4 flex gap-1.5 items-center">
-          <input type="checkbox" name="vaccinated" id="vaccinated">
-          <label for="vaccinated" class="text-gray-200">Vaccinated</label>
-        </div>
+          <input
+            type="checkbox"
+            name="vaccinated"
+            id="vaccinated"
+            {{
+              old('vaccinated') !== null ?  (old('vaccinated') ? 'checked' : '') :
+                ($cat->vaccinated ? 'checked' : '')
+            }}
+          >
+            <label for="vaccinated" class="text-gray-200">Vaccinated</label>
+          </div>
 
         <div class="mb-4">
           <label class="mb-2 block text-gray-200 font-bold">Cat Photo</label>
