@@ -19,13 +19,23 @@ const myDropzone = new Dropzone("#dropzone", {
             const photo = {
                 size: 1000,
                 name: photoUrl,
+                accepted: true,
             };
 
-            this.options.addedfile.call(this, photo);
-            this.options.thumbnail.call(this, photo, photoUrl);
+            this.emit("addedfile", photo);
+            this.emit("thumbnail", photo, photoUrl);
+            this.emit("complete", photo);
+            this.files.push(photo);
 
             photo.previewElement.classList.add('dz-success', 'dz-complete');
         }
+    }
+});
+
+myDropzone.on("addedfile", function (file) {
+    for (var i = myDropzone.files.length - myDropzone.maxFiles - 1; i >= 0; i--) {
+        var f = myDropzone.files[i];
+        if (f.upload.uuid !== file.upload.uuid) myDropzone.removeFile(f);
     }
 });
 
@@ -33,4 +43,14 @@ myDropzone.on("success", function (file, response) {
     let input = document.querySelector('input[name="photo"]');
     input.value = response.photo_url;
     console.log(response);
+});
+
+myDropzone.on("removedfile", function () {
+    let input = document.querySelector('input[name="photo"]');
+    input.value = "";
+});
+
+myDropzone.on("maxfilesexceeded", function (file) {
+    this.removeAllFiles();
+    this.addFile(file);
 });

@@ -90,11 +90,23 @@ class CatController extends Controller
      * 
      * @param Request $request 
      * @param Cat $cat 
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Cat $cat)
     {
-        return response()->json($cat);
+        $data = $request
+            ->merge(['vaccinated' => (bool) $request?->vaccinated])
+            ->validate([
+                'name' => 'required|string|max:255',
+                'breed' => 'required|string|max:255',
+                'age' => 'required|numeric|min:0',
+                'vaccinated' => 'required',
+                'photo' => 'required',
+            ]);
+
+        $cat->update($data);
+
+        return redirect()->route('home');
     }
 
     /**

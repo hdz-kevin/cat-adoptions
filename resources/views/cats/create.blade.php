@@ -5,7 +5,7 @@
 @endpush
 
 @push('scripts')
-  @vite('resources/js/create-cat.js')
+  @vite('resources/js/dropzone.js')
 @endpush
 
 @section('title', 'Add a new Cat for Adoption')

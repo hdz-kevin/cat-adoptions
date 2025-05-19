@@ -5,7 +5,7 @@
 @endpush
 
 @push('scripts')
-  @vite('resources/js/create-cat.js')
+  @vite('resources/js/dropzone.js')
 @endpush
 
 @section('title')
@@ -15,7 +15,7 @@
 @section('content')
   <div class="md:flex md:justify-center md:items-center mt-12">
     <div class="md:w-4/12 bg-[#333333] p-5 rounded-lg shadow-xl">
-      <form action="#" method="POST" novalidate class="form">
+      <form action="{{ route('cats.update', $cat->id) }}" method="POST" novalidate class="form">
         @csrf
         @method('PUT')
 
@@ -95,7 +95,7 @@
           <input
             type="hidden"
             name="photo"
-            value="{{ old('photo') }}"
+            value="{{ old('photo') ?? $cat->photo }}"
           >
 
           @error('photo')
