@@ -16,6 +16,6 @@ class Cat extends Model
         'vaccinated',
         'photo',
         'is_adopted',
-        'user_id',
+        'adopter_id',
     ];
 }

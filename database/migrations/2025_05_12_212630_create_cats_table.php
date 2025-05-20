@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('cats', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignId('adopter_id')->nullable()->constrained('users');
             $table->boolean('is_adopted')->default(false);
             $table->string('name');
             $table->string('breed');
