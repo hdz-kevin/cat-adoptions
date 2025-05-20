@@ -21,7 +21,7 @@ class CatFactory extends Factory
             'breed' => $this->faker->randomElement(['Siamese', 'Persian', 'Maine Coon', 'Bengal', 'Sphynx', 'Ragdoll']),
             'age' => $this->faker->numberBetween(0, 15),
             'vaccinated' => $this->faker->boolean(80),
-            'photo' => 'default.webp',
+            'photo' => 'cats/default.webp',
             'is_adopted' => false,
             'adopter_id' => null,
         ];

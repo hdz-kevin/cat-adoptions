@@ -9,7 +9,7 @@
         <div class="bg-[#333333] p-2 pb-4 rounded-lg">
           <div class="flex justify-center h-60">
             <a href="{{ route('cats.show', $cat->id) }}" class="w-full">
-              <img src="{{ $cat->photo }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
+              <img src="{{ Storage::url($cat->photo) }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
             </a>
           </div>
           <div class="px-3 mt-4">
@@ -43,7 +43,7 @@
                   @method('DELETE')
                   @csrf
 
-                  <button type="submit" class="p-2 px-5 bg-red-500 hover:bg-red-600 transition-colors rounded-sm font-medium">
+                  <button type="submit" class="p-2 px-5 bg-red-500 hover:bg-red-600 transition-colors rounded-sm font-medium cursor-pointer">
                     Delete
                   </button>
                 </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class CatController extends Controller
 {
@@ -32,11 +33,9 @@ class CatController extends Controller
     public function photoUpload(Request $request)
     {
         $request->validate(['photo' => 'required|image']);
-        $path = $request->file('photo')->store('/cats/photos', 'public');
+        $path = $request->file('photo')->store('cats', 'public');
 
-        return response()->json([
-            'photo_url' => \Illuminate\Support\Facades\Storage::url($path),
-        ]);
+        return response()->json(compact('path'));
     }
 
     /**
@@ -122,10 +121,10 @@ class CatController extends Controller
     {
         $cat->delete();
 
-        $catPhoto = public_path($cat->photo);
+        $photo = public_path(Storage::url($cat->photo));
 
-        if (File::exists($catPhoto)) {
-            unlink($catPhoto);
+        if (File::exists($photo)) {
+            unlink($photo);
         }
 
         return redirect()->route('home');

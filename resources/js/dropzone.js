@@ -13,17 +13,17 @@ const myDropzone = new Dropzone("#dropzone", {
     },
 
     init: function () {
-        const photoUrl = document.querySelector('input[name="photo"]').value.trim();
+        const photoPath = document.querySelector('input[name="photo"]').value.trim();
 
-        if (photoUrl) {
+        if (photoPath) {
             const photo = {
                 size: 1000,
-                name: photoUrl,
+                name: photoPath,
                 accepted: true,
             };
 
             this.emit("addedfile", photo);
-            this.emit("thumbnail", photo, photoUrl);
+            this.emit("thumbnail", photo, `/storage/${photoPath}`);
             this.emit("complete", photo);
             this.files.push(photo);
 
@@ -41,7 +41,7 @@ myDropzone.on("addedfile", function (file) {
 
 myDropzone.on("success", function (file, response) {
     let input = document.querySelector('input[name="photo"]');
-    input.value = response.photo_url;
+    input.value = response.path;
     console.log(response);
 });
 
