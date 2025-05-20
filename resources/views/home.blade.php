@@ -33,11 +33,16 @@
 
             <div class="flex justify-between mt-3">
               @if (auth()->user()?->is_admin)
+                <form action="{{ route('cats.destroy', $cat->id) }}" method="POST">
+                  @method('DELETE')
+                  @csrf
+
+                  <button type="submit" class="p-2 px-5 bg-red-500 hover:bg-red-600 transition-colors rounded-sm font-medium">
+                    Delete
+                  </button>
+                </form>
                 <a href="{{ route('cats.edit', $cat) }}" class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium">
                   Edit
-                </a>
-                <a href="#" class="p-2 px-5 bg-red-500 hover:bg-red-600 transition-colors rounded-sm font-medium">
-                  Delete
                 </a>
               @else
                 <a href="#"

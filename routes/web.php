@@ -7,16 +7,6 @@ use App\Http\Controllers\CatController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -32,3 +22,4 @@ Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create'
 Route::post('/cats', [CatController::class, 'store'])->name('cats.store');
 Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
 Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
+Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');

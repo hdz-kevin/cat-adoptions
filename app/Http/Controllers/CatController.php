@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class CatController extends Controller
 {
@@ -96,13 +97,18 @@ class CatController extends Controller
     {
         $data = $request
             ->merge(['vaccinated' => (bool) $request?->vaccinated])
-            ->validate([
-                'name' => 'required|string|max:255',
-                'breed' => 'required|string|max:255',
-                'age' => 'required|numeric|min:0',
-                'vaccinated' => 'required',
-                'photo' => 'required',
-            ]);
+            ->validate(
+                [
+                    'name' => 'required|string|max:255',
+                    'breed' => 'required|string|max:255',
+                    'age' => 'required|numeric|min:0',
+                    'vaccinated' => 'required',
+                    'photo' => 'required',
+                ],
+                [
+                    'photo.required' => 'The cat photo is required',
+                ]
+            );
 
         $cat->update($data);
 
@@ -114,6 +120,14 @@ class CatController extends Controller
      */
     public function destroy(Cat $cat)
     {
-        //
+        $cat->delete();
+
+        $catPhoto = public_path($cat->photo);
+
+        if (File::exists($catPhoto)) {
+            unlink($catPhoto);
+        }
+
+        return redirect()->route('home');
     }
 }
