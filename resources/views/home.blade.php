@@ -8,7 +8,9 @@
       @foreach ($cats as $cat)
         <div class="bg-[#333333] p-2 pb-4 rounded-lg">
           <div class="flex justify-center h-60">
-            <img src="{{ $cat->photo }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
+            <a href="{{ route('cats.show', $cat->id) }}" class="w-full">
+              <img src="{{ $cat->photo }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
+            </a>
           </div>
           <div class="px-3 mt-4">
             <p class="text-2xl font-medium mb-2">{{ $cat->name }}</p>
@@ -33,7 +35,11 @@
 
             <div class="flex justify-between mt-3">
               @if (auth()->user()?->is_admin)
-                <form action="{{ route('cats.destroy', $cat->id) }}" method="POST">
+                <form
+                  action="{{ route('cats.destroy', $cat->id) }}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this cat?');"
+                >
                   @method('DELETE')
                   @csrf
 
@@ -41,7 +47,10 @@
                     Delete
                   </button>
                 </form>
-                <a href="{{ route('cats.edit', $cat) }}" class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium">
+                <a
+                  href="{{ route('cats.edit', $cat) }}"
+                  class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium"
+                >
                   Edit
                 </a>
               @else

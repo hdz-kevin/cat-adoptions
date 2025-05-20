@@ -20,6 +20,7 @@ Route::post('/cats/photo-upload', [CatController::class, 'photoUpload'])->name('
 
 Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
 Route::post('/cats', [CatController::class, 'store'])->name('cats.store');
+Route::get('/cats/{cat}', [CatController::class, 'show'])->name('cats.show');
 Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
 Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
 Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');

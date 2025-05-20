@@ -14,7 +14,7 @@ class CatController extends Controller
     public function index() {}
 
     /**
-     * Show the form for creating a new resource.
+     * Display the form for creating a new resource.
      * 
      * @return \Illuminate\Contracts\View\View
      */
@@ -72,7 +72,7 @@ class CatController extends Controller
      */
     public function show(Cat $cat)
     {
-        //
+        return view('cats.show', compact('cat'));
     }
 
     /**
