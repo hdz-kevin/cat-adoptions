@@ -3,17 +3,17 @@
 @section('title', 'Cats for Adoption')
 
 @section('content')
-  <div class="container p-4 mb-10">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+  <div class="container p-2 mb-10">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
       @foreach ($cats as $cat)
-        <div class="bg-[#333333] p-2 pb-4 rounded-lg">
-          <div class="flex justify-center h-60">
+        <div class="bg-[#333333] p-2 pb-3 rounded-lg">
+          <div class="flex justify-center h-52">
             <a href="{{ route('cats.show', $cat->id) }}" class="w-full">
               <img src="{{ Storage::url($cat->photo) }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
             </a>
           </div>
           <div class="px-3 mt-4">
-            <p class="text-2xl font-medium mb-2">{{ $cat->name }}</p>
+            <p class="text-xl font-medium mb-1">{{ $cat->name }}</p>
             <p class="text-base/7"><span class="font-medium">Breed: </span>{{ $cat->breed }}</p>
             <p class="text-base/7"><span class="font-medium">Age: </span>{{ $cat->age }}</p>
             <p class="text-base/7">
@@ -65,5 +65,10 @@
         </div>
       @endforeach
     </div>
+
+    <div class="mt-10"></div>
+      {{ $cats->links() }}
+    </div>
+
   </div>
 @endsection

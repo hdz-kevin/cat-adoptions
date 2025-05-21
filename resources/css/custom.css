@@ -1,0 +1,38 @@
+.input-autofill {
+    background-color: #444444 !important;
+    color: white !important;
+    caret-color: white !important;
+}
+
+/* Sobrescribe específicamente los estilos de autocompletado */
+.input-autofill:-webkit-autofill,
+.input-autofill:-webkit-autofill:hover, 
+.input-autofill:-webkit-autofill:focus,
+.input-autofill:-webkit-autofill:active,
+.input-autofill:-internal-autofill-selected {
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0 1000px #444444 inset !important;
+    caret-color: white !important;
+    background-color: #444444 !important;
+    color: white !important;
+}
+.input-autofill::placeholder {
+    color: #d1d5dbb3 !important; /* Equivalente a gray-400 con 70% opacidad */
+}
+
+/* Dropzone custom dark styles */
+.dropzone {
+    background: #444444 !important;
+    border: 2px dashed #a3a3a3 !important;
+    color: #d1d5db !important;
+}
+
+.dropzone .dz-message {
+    color: #ccd0d6 !important;
+}
+
+.dropzone .dz-preview {
+    background: #444444 !important;
+    border-radius: 0.5rem;
+}
+

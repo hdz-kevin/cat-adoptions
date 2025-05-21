@@ -43,7 +43,7 @@
       </div>
     </header>
 
-    <main class="container mx-auto mt-10">
+    <main class="container mx-auto mt-8">
       <h2 class="text-3xl font-black text-center mb-8">
         @yield('title')
       </h2>
