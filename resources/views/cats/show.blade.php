@@ -4,7 +4,7 @@
   <div class="flex justify-center mt-20">
     <div class="w-full max-w-md bg-[#333333] p-6 rounded-lg shadow-xl">
       <div class="flex justify-center h-64 mb-6">
-        <img src="{{ $cat->photo }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
+        <img src="{{ Storage::url($cat->photo) }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
       </div>
       <div class="text-gray-200">
         <h2 class="text-3xl font-bold mb-4 text-center">{{ $cat->name }}</h2>

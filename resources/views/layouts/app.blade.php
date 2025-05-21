@@ -27,17 +27,19 @@
         </div>
         <nav class="flex items-center gap-4">
           @auth
-            <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[17px]">Add Cat</a>
-            <a href="#" class="underline font-medium text-[17px]">{{ auth()->user()->email }}</a>
+            @if (auth()->user()->is_admin)
+              <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[18px]">Add Cat</a>
+            @endif
+            <a href="#" class="underline font-medium text-[18px]">{{ auth()->user()->username }}</a>
             <form action="{{ route('logout') }}" method="post">
               @csrf
 
-              <button type="submit" class="text-gray-300 font-medium text-[17px] cursor-pointer">Logout</button>
+              <button type="submit" class="text-gray-300 font-medium text-[18px] cursor-pointer">Logout</button>
             </form>
           @endauth
           @guest
-            <a href="{{ route('login') }}" class="font-medium text-[17px] text-gray-300">Login</a>
-            <a href="{{ route('register') }}" class="font-medium text-[17px] text-gray-300">Register</a>
+            <a href="{{ route('login') }}" class="font-medium text-[18px] text-gray-300">Login</a>
+            <a href="{{ route('register') }}" class="font-medium text-[18px] text-gray-300">Register</a>
           @endguest
         </nav>
       </div>
