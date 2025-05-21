@@ -12,7 +12,11 @@ class CatController extends Controller
     /**
      * Display a listing of the unadopted cats.
      */
-    public function index() {}
+    public function index() {
+        $cats = Cat::where('is_adopted', false)->latest()->paginate(12);
+
+        return view('cats.index', compact('cats'));
+    }
 
     /**
      * Display the form for creating a new resource.

@@ -18,14 +18,15 @@
   </head>
 
   <body class="bg-[#222222] text-[#eeeeee]">
-    <header class="bg-[#333333] p-2">
-      <div class="container mx-auto flex justify-between items-center p-4">
+    <header class="bg-[#333333] p-5">
+      <div class="container mx-auto flex justify-between items-center">
         <div>
           <a href="{{ route('home') }}">
             <h1 class="text-3xl font-black">CatAdoptions</h1>
           </a>
         </div>
         <nav class="flex items-center gap-4">
+          <a href="{{ route('cats.index') }}" class="mr-3 font-medium text-[18px]">All Cats</a>
           @auth
             @if (auth()->user()->is_admin)
               <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[18px]">Add Cat</a>
@@ -34,12 +35,12 @@
             <form action="{{ route('logout') }}" method="post">
               @csrf
 
-              <button type="submit" class="text-gray-300 font-medium text-[18px] cursor-pointer">Logout</button>
+              <button type="submit" class="font-medium text-[18px] cursor-pointer">Logout</button>
             </form>
           @endauth
           @guest
-            <a href="{{ route('login') }}" class="font-medium text-[18px] text-gray-300">Login</a>
-            <a href="{{ route('register') }}" class="font-medium text-[18px] text-gray-300">Register</a>
+            <a href="{{ route('login') }}" class="font-medium text-[18px]">Login</a>
+            <a href="{{ route('register') }}" class="font-medium text-[18px]">Register</a>
           @endguest
         </nav>
       </div>

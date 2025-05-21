@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Most Recent Cats')
+@section('title', 'All Our Cats')
 
 @section('content')
   <div class="container p-2 mb-10">
@@ -65,5 +65,10 @@
         </div>
       @endforeach
     </div>
+
+    <div class="mt-10"></div>
+      {{ $cats->links() }}
+    </div>
+
   </div>
 @endsection

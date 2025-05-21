@@ -18,14 +18,18 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::post('/logout', [LogoutController::class, 'logout'])->withoutMiddleware('admin')->name('logout');
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+});
 
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/cats/photo-upload', [CatController::class, 'photoUpload'])->name('cats.photo.upload');
     Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
     Route::post('/cats', [CatController::class, 'store'])->name('cats.store');
-    Route::get('/cats/{cat}', [CatController::class, 'show'])->withoutMiddleware('admin')->name('cats.show');
     Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
     Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
     Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');
 });
+
+Route::get('/cats', [CatController::class, 'index'])->name('cats.index');
+Route::get('/cats/{cat}', [CatController::class, 'show'])->withoutMiddleware(['auth', 'admin'])->name('cats.show');
