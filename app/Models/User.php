@@ -43,4 +43,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function adoptionRequests()
+    {
+        return $this->hasMany(AdoptionRequest::class);
+    }
+
+    /**
+     * Check if the user has an adoption request for `$cat`.
+     *
+     * @param Cat $cat
+     * @return boolean
+     */
+    public function hasAdoptionRequest(Cat $cat)
+    {
+        return $this->adoptionRequests()->where('cat_id', $cat->id)->exists();
+    }
 }

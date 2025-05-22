@@ -18,4 +18,20 @@ class Cat extends Model
         'is_adopted',
         'adopter_id',
     ];
+
+    public function adoptionRequests()
+    {
+        return $this->hasMany(AdoptionRequest::class);
+    }
+
+    /**
+     * Check if the cat has an adoption request from `$user`.
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function hasAdoptionRequest(User $user)
+    {
+        return $this->adoptionRequests()->where('user_id', $user->id)->exists();
+    }
 }

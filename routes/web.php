@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdoptionRequestController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -29,6 +30,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
     Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
     Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');
+});
+
+Route::middleware(['auth', 'not_admin'])->group(function () {
+    Route::post('/adoption-requests/{cat}', [AdoptionRequestController::class, 'store'])->name('adoption-requests.store');
 });
 
 Route::get('/cats', [CatController::class, 'index'])->name('cats.index');

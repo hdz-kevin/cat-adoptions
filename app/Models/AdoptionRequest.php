@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class AdoptionRequest extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'cat_id',
+        'status',
+    ];
 }

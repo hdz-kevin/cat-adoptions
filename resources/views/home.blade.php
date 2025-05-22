@@ -54,11 +54,14 @@
                   Edit
                 </a>
               @else
-                <a href="#"
-                  class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium"
-                >
-                  Adopt Now
-                </a>
+                <form action="{{ route('adoption-requests.store', $cat->id) }}" method="POST">
+                  @csrf
+                  <button type="submit"
+                    class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium cursor-pointer"
+                  >
+                    Adopt Now
+                  </button>
+                </form>
               @endif
             </div>
           </div>
