@@ -53,13 +53,22 @@
                 >
                   Edit
                 </a>
+              @elseif (auth()->user()->checkAdoptionRequest($cat))
+                <form action="{{ route('adoption-requests.cancel', $cat->id) }}" method="POST">
+                  @csrf
+                  <button type="submit"
+                    class="p-2 px-5 bg-red-500 hover:bg-red-600 transition-colors rounded-sm font-medium cursor-pointer"
+                  >
+                    Cancel Request
+                  </button>
+                </form>
               @else
                 <form action="{{ route('adoption-requests.store', $cat->id) }}" method="POST">
                   @csrf
                   <button type="submit"
                     class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium cursor-pointer"
                   >
-                    Adopt Now
+                    Request Adoption
                   </button>
                 </form>
               @endif

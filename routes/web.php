@@ -34,6 +34,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'not_admin'])->group(function () {
     Route::post('/adoption-requests/{cat}', [AdoptionRequestController::class, 'store'])->name('adoption-requests.store');
+    Route::post('/adoption-requests/{cat}/cancel', [AdoptionRequestController::class, 'destroy'])->name('adoption-requests.cancel');
 });
 
 Route::get('/cats', [CatController::class, 'index'])->name('cats.index');

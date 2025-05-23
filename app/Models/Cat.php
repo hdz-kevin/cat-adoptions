@@ -19,6 +19,11 @@ class Cat extends Model
         'adopter_id',
     ];
 
+    /**
+     * Get all adoption requests for the cat.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function adoptionRequests()
     {
         return $this->hasMany(AdoptionRequest::class);
@@ -28,10 +33,10 @@ class Cat extends Model
      * Check if the cat has an adoption request from `$user`.
      *
      * @param User $user
-     * @return boolean
+     * @return AdoptionRequest|null
      */
-    public function hasAdoptionRequest(User $user)
+    public function checkAdoptionRequest(User $user)
     {
-        return $this->adoptionRequests()->where('user_id', $user->id)->exists();
+        return $this->adoptionRequests()->where('user_id', $user->id)->first();
     }
 }
