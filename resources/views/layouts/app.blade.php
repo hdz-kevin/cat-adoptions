@@ -18,6 +18,8 @@
   </head>
 
   <body class="bg-[#222222] text-[#eeeeee]">
+    @include('components.svg-symbols')
+
     <header class="bg-[#333333] p-5">
       <div class="container mx-auto flex justify-between items-center">
         <div>

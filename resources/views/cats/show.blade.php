@@ -23,27 +23,8 @@
             </svg>
           @endif
         </p>
-        <div class="flex justify-between mt-6 gap-2">
-          @if(auth()->user()?->is_admin)
-            <a
-              href="{{ route('cats.edit', $cat) }}"
-              class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium"
-            >
-              Edit
-            </a>
-            <form
-              action="{{ route('cats.destroy', $cat->id) }}"
-              method="POST"
-              onsubmit="return confirm('Are you sure you want to delete this cat?');"
-            >
-              @csrf
-              @method('DELETE')
-
-              <button type="submit" class="p-2 px-5 bg-red-500 hover:bg-red-600 transition-colors rounded-sm font-medium">Delete</button>
-            </form>
-          @else
-            <a href="#" class="p-2 px-5 bg-sky-600 hover:bg-sky-700 transition-colors rounded-sm font-medium">Adopt Now</a>
-          @endif
+        <div class="flex justify-between mt-6">
+          <x-cat-actions :cat="$cat" />
         </div>
       </div>
     </div>
