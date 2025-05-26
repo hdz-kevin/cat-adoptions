@@ -7,12 +7,6 @@
   <div class="px-3 mt-4">
     <p class="text-xl font-medium mb-1">{{ $cat->name }}</p>
     <p class="text-base/7"><span class="font-medium">Breed: </span>{{ $cat->breed }}</p>
-    <p class="text-base/7"><span class="font-medium">Age: </span>{{ $cat->age }}</p>
-    <p class="text-base/7">
-      <span class="font-medium">Vaccinated:
-        <x-icon :icon="$cat->vaccinated ? 'check' : 'cross'" />
-      </span>
-    </p>
 
     <div class="flex justify-between mt-3">
       <x-cat-actions :cat="$cat" />
