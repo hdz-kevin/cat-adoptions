@@ -28,7 +28,7 @@
           </a>
         </div>
         <nav class="flex items-center gap-4">
-          <a href="{{ route('cats.index') }}" class="mr-3 font-medium text-[18px]">All Cats</a>
+          <a href="{{ route('cats.index') }}" class="mr-3 font-medium text-[18px]">Cats</a>
           @auth
             @if (auth()->user()->is_admin)
               <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[18px]">Add Cat</a>

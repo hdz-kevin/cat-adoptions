@@ -14,4 +14,14 @@ class AdoptionRequest extends Model
         'cat_id',
         'status',
     ];
+
+    /**
+     * Get the user that owns the adoption request.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

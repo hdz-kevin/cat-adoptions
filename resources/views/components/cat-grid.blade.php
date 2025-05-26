@@ -6,6 +6,8 @@
   </div>
   <div class="px-3 mt-4">
     <p class="text-xl font-medium mb-1">{{ $cat->name }}</p>
+    {{-- Remove cat id --}}
+    <p class="text-base/7"><span class="font-medium">Id: </span>{{ $cat->id }}</p>
     <p class="text-base/7"><span class="font-medium">Breed: </span>{{ $cat->breed }}</p>
 
     <div class="flex justify-between mt-3">
