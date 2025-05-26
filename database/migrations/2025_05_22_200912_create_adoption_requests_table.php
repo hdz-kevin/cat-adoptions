@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('adoption_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained('users');
-            $table->foreignIdFor(Cat::class)->constrained('cats');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Cat::class)->constrained()->onDelete('cascade');
             $table->enum('status', AdoptionRequestStatus::values())->default(AdoptionRequestStatus::PENDING->value);
             $table->timestamps();
         });
