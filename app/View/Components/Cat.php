@@ -2,18 +2,18 @@
 
 namespace App\View\Components;
 
-use App\Models\Cat;
+use App\Models\Cat as CatModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CatShow extends Component
+class Cat extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public Cat $cat,
+        public CatModel $cat,
     )
     {
         //
@@ -24,6 +24,6 @@ class CatShow extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cat-show');
+        return view('components.cat');
     }
 }

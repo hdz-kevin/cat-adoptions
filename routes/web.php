@@ -6,7 +6,11 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
+# TODO: Allow to approve an adoption request for a cat only once
 
 
 Route::get('/', fn () => redirect()->route('home'));
@@ -21,6 +25,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+    // Profile
+    Route::get('/profile', fn (Request $request) => response()->json($request->user()))->name('profile');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -30,6 +36,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
     Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
     Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');
+    Route::delete('/adoption-requests/{adoptionRequest}/reject', [AdoptionRequestController::class, 'reject'])
+            ->name('adoption-requests.reject');
+    Route::post('/adoption-requests/{adoptionRequest}/approve', [AdoptionRequestController::class, 'approve'])
+            ->name('adoption-requests.approve');
 });
 
 Route::middleware(['auth', 'not_admin'])->group(function () {

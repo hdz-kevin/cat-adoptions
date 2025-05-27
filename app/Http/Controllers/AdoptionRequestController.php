@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\AdoptionRequestStatus;
+use App\Models\AdoptionRequest;
 use App\Models\Cat;
 use Illuminate\Http\Request;
 
@@ -44,5 +46,35 @@ class AdoptionRequestController extends Controller
         $adoptionRequest->delete();
 
         return back();
+    }
+
+    /**
+     * Reject an adoption request, setting its status to REJECTED.
+     *
+     * @param AdoptionRequest $adoptionRequest
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function reject(AdoptionRequest $adoptionRequest)
+    {
+        $adoptionRequest->status = AdoptionRequestStatus::REJECTED->value;
+        $adoptionRequest->save();
+
+        return back()->with('success', 'Adoption request rejected successfully.');
+    }
+
+    /**
+     * Approve an adoption request, setting its status to APPROVED.
+     * 
+     * TODO: Implement logic to set the cat as adopted and assign the adopter.
+     *
+     * @param AdoptionRequest $adoptionRequest
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function approve(AdoptionRequest $adoptionRequest)
+    {
+        $adoptionRequest->status = AdoptionRequestStatus::APPROVED->value;
+        $adoptionRequest->save();
+
+        return back()->with('success', 'Adoption request approved successfully.');
     }
 }

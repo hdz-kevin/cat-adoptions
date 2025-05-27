@@ -53,10 +53,10 @@ class User extends Authenticatable
      * Check if the user has an adoption request for `$cat`.
      *
      * @param Cat $cat
-     * @return boolean
+     * @return AdoptionRequest|null
      */
     public function checkAdoptionRequest(Cat $cat)
     {
-        return $this->adoptionRequests()->where('cat_id', $cat->id)->exists();
+        return $this->adoptionRequests()->where('cat_id', $cat->id)->first();
     }
 }

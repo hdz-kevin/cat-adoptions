@@ -33,7 +33,7 @@
             @if (auth()->user()->is_admin)
               <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[18px]">Add Cat</a>
             @endif
-            <a href="#" class="underline font-medium text-[18px]">{{ auth()->user()->username }}</a>
+            <a href="{{ route('profile') }}" class="underline font-medium text-[18px]">{{ auth()->user()->id .' - '. auth()->user()->username }}</a>
             <form action="{{ route('logout') }}" method="post">
               @csrf
 
