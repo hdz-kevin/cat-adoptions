@@ -2,7 +2,12 @@
   <img src="{{ Storage::url($cat->photo) }}" alt="cat picture" class="object-cover h-full w-full rounded-lg">
 </div>
 <div class="text-gray-200">
-  <h2 class="text-3xl font-bold mb-4 text-center">{{ $cat->id .' - '. $cat->name }}</h2>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold text-center">{{ $cat->id .' - '. $cat->name }}</h2>
+    @if ($cat->is_adopted)
+      <span class="text-[20px] font-medium text-green-500 uppercase inline-block">Adopted</span>
+    @endif
+  </div>
   <p class="mb-2"><span class="font-semibold">Breed:</span> {{ $cat->breed }}</p>
   <p class="mb-2"><span class="font-semibold">Age:</span> {{ $cat->age }}</p>
   <p class="mb-2 flex items-center">

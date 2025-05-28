@@ -12,8 +12,15 @@ class CatController extends Controller
     /**
      * Display a listing of the unadopted cats.
      */
-    public function index() {
-        $cats = Cat::where('is_adopted', false)->latest()->paginate(12);
+    public function index(Request $request)
+    {
+        $pagination = 12;
+
+        if ($request->user()?->is_admin) {
+            $cats = Cat::orderBy('created_at', 'desc')->paginate($pagination);
+        } else {
+            $cats = Cat::where('is_adopted', false)->latest()->paginate($pagination);
+        }
 
         return view('cats.index', compact('cats'));
     }
