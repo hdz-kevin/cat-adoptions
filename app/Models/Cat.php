@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\AdoptionRequestStatus as AdoptReqStatus;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,12 +33,18 @@ class Cat extends Model
 
     /**
      * Get all adoption requests for the cat grouped by status.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * 
+     * @return \Illuminate\Support\Collection<string, Illuminate\Database\Eloquent\Collection>
      */
     public function groupedAdoptionRequests()
     {
-        return $this->adoptionRequests()->get()->groupBy('status');
+        $grouped = $this->adoptionRequests()->get()->groupBy('status');
+
+        // Ensures that all available statuses are in the returned collection
+        return collect(AdoptReqStatus::values())
+                  ->mapWithKeys(fn ($status) => [
+                      $status => $grouped->get($status, new Collection())
+                  ]);
     }
 
     /**

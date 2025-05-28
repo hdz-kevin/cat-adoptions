@@ -64,16 +64,17 @@ class AdoptionRequestController extends Controller
 
     /**
      * Approve an adoption request, setting its status to APPROVED.
-     * 
-     * TODO: Implement logic to set the cat as adopted and assign the adopter.
      *
      * @param AdoptionRequest $adoptionRequest
      * @return \Illuminate\Http\RedirectResponse
      */
     public function approve(AdoptionRequest $adoptionRequest)
     {
-        $adoptionRequest->status = AdoptionRequestStatus::APPROVED->value;
-        $adoptionRequest->save();
+        $adoptionRequest->update(['status' => AdoptionRequestStatus::APPROVED->value]);
+        $adoptionRequest->cat->update([
+            'adopter_id' => $adoptionRequest->user->id,
+            'is_adopted' => true,
+        ]);
 
         return back()->with('success', 'Adoption request approved successfully.');
     }

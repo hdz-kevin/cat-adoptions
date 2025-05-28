@@ -13,6 +13,7 @@ class AdoptionRequest extends Component
      */
     public function __construct(
         public \App\Models\AdoptionRequest $adoptionRequest,
+        public bool $showActions = false,
     )
     {
         //

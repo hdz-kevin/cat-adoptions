@@ -24,4 +24,14 @@ class AdoptionRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the cat that has been requested for adoption.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function cat()
+    {
+        return $this->belongsTo(Cat::class);
+    }
 }
