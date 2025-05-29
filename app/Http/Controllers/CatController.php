@@ -14,7 +14,7 @@ class CatController extends Controller
      */
     public function index(Request $request)
     {
-        $pagination = 12;
+        $pagination = 16;
 
         if ($request->user()?->is_admin) {
             $cats = Cat::orderBy('created_at', 'desc')->paginate($pagination);

@@ -9,7 +9,7 @@
     @endif
   </div>
   <p class="mb-2"><span class="font-semibold">Breed:</span> {{ $cat->breed }}</p>
-  <p class="mb-2"><span class="font-semibold">Age:</span> {{ $cat->age }}</p>
+  <p class="mb-2"><span class="font-semibold">Age:</span> {{ $cat->age }} years old</p>
   <p class="mb-2 flex items-center">
     <span class="font-semibold mr-2">Vaccinated:</span>
     @if ($cat->vaccinated)

@@ -54,7 +54,7 @@
         </div>
 
         <div class="mb-4">
-          <label for="age" class="mb-2 block text-gray-200 font-bold">Age</label>
+          <label for="age" class="mb-2 block text-gray-200 font-bold">Age (Years)</label>
           <input
             id="age"
             name="age"
