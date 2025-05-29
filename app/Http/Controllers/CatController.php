@@ -10,17 +10,28 @@ use Illuminate\Support\Facades\Storage;
 class CatController extends Controller
 {
     /**
-     * Display a listing of the unadopted cats.
+     * Display cat list
+     * Guest: Only unadopted cats
+     * Auth User: Adopted cat by him and all unadopted cats
+     * Admin: All cats
      */
     public function index(Request $request)
     {
         $pagination = 16;
+        $query = Cat::query();
 
-        if ($request->user()?->is_admin) {
-            $cats = Cat::orderBy('created_at', 'desc')->paginate($pagination);
+        if (! auth()->check()) {
+            $query->where('is_adopted', false)->orderBy('created_at', 'desc');    
+        } else if ($request->user()->is_admin) {
+            $query->orderBy('created_at', 'desc');
         } else {
-            $cats = Cat::where('is_adopted', false)->latest()->paginate($pagination);
+            $query->where('adopter_id', $request->user()->id)
+                    ->orWhere('is_adopted', 'false')
+                    ->orderByDesc('is_adopted')
+                    ->orderByDesc('created_at');
         }
+
+        $cats = $query->paginate($pagination);
 
         return view('cats.index', compact('cats'));
     }
