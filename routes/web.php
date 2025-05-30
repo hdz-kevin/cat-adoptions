@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-# TODO: Allow to approve an adoption request for a cat only once
+# TODO: Prevent a user from adopting more than one cat.
 
 
 Route::get('/', fn () => redirect()->route('home'));
@@ -44,7 +44,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'not_admin'])->group(function () {
     Route::post('/adoption-requests/{cat}', [AdoptionRequestController::class, 'store'])->name('adoption-requests.store');
-    Route::post('/adoption-requests/{cat}/cancel', [AdoptionRequestController::class, 'destroy'])->name('adoption-requests.cancel');
+    Route::post('/adoption-requests/{cat}/cancel', [AdoptionRequestController::class, 'cancel'])->name('adoption-requests.cancel');
 });
 
 Route::get('/cats', [CatController::class, 'index'])->name('cats.index');

@@ -18,9 +18,11 @@ class AdoptionRequestController extends Controller
      */
     public function store(Request $request, Cat $cat)
     {
-        if ($cat->checkAdoptionRequest($request->user())) {
+        abort_if($cat->checkAdoptionRequest($request->user()), 403);
+
+        if ($request->user()->cat) {
             return back()
-                    ->with('error', 'You have already requested to adopt this cat.');
+                    ->with('alert', "You can't adopt more than one cat");
         }
 
         $cat->adoptionRequests()->create([
@@ -37,7 +39,7 @@ class AdoptionRequestController extends Controller
      * @param Cat $cat
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, Cat $cat)
+    public function cancel(Request $request, Cat $cat)
     {
         $adoptionRequest = $cat->checkAdoptionRequest($request->user());
 

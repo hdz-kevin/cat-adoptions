@@ -14,7 +14,9 @@
     Edit
   </a>
 @elseif ($aR = auth()->user()?->checkAdoptionRequest($cat))
-  @if ($aR->status === 'rejected')
+  @if ($aR->status === 'approved')
+    <p class="text-[18px] text-green-400 w-full text-center uppercase font-medium">Adoption request approved</p>
+  @elseif ($aR->status === 'rejected')
     <p class="text-[18px] text-red-400 w-full text-center uppercase font-medium">Adoption request rejected</p>
   @else
     <form action="{{ route('adoption-requests.cancel', $cat->id) }}" method="POST">

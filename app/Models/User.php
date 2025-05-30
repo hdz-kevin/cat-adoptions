@@ -44,6 +44,21 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * Get the cat the user adopted.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function cat()
+    {
+        return $this->hasOne(Cat::class, 'adopter_id');
+    }
+
+    /**
+     * Get all user adoption requests.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function adoptionRequests()
     {
         return $this->hasMany(AdoptionRequest::class);

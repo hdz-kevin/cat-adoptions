@@ -7,7 +7,7 @@
   <div class="px-3 mt-4">
     <div class="flex justify-between items-center mb-1">
       <p class="text-xl font-medium">{{ $cat->id .' - '.$cat->name }}</p>
-      @if ($cat->is_adopted)
+      @if ($cat->is_adopted && auth()->user()?->is_admin)
         <span class="text-[18px] font-medium text-green-500 uppercase inline-block">Adopted</span>
       @endif
     </div>
