@@ -22,21 +22,31 @@ class AdoptionRequestController extends Controller
 
         if ($request->user()->cat) {
             return back()
-                    ->with('alert', "You can't adopt more than one cat");
+                    ->with('alert', [
+                        'type' => 'danger',
+                        'message' =>  "You can't adopt more than one cat",
+                    ]);
         }
 
         $adoptReqLimit = 6;
 
         if ($request->user()->adoptionRequests->count() >= $adoptReqLimit) {
             return back()
-                    ->with('alert', "You have reached the limit of adoption requests");
+                    ->with('alert', [
+                        'type' => 'danger',
+                        'message' => 'You have reached the limit of adoption requests',
+                    ]);
         }
 
         $cat->adoptionRequests()->create([
             'user_id' => $request->user()->id,
         ]);
 
-        return back();
+        return back()
+                ->with('alert', [
+                    'type' => 'success',
+                    'message' => 'Adoption request sent',
+                ]);
     }
 
     /**

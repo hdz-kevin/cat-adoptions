@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-# TODO: Prevent a user from adopting more than one cat.
-
-
 Route::get('/', fn () => redirect()->route('home'));
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

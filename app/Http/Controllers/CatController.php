@@ -83,9 +83,14 @@ class CatController extends Controller
                 ],
             );
 
-        Cat::create($data);
+        $cat = Cat::create($data);
 
-        return redirect()->route('home');
+        return redirect()
+                ->route('cats.index')
+                ->with('alert', [
+                    'type' => 'success',
+                    'message' =>  "Cat {$cat->name} added successfully",
+                ]);
     }
 
     /**
@@ -133,7 +138,12 @@ class CatController extends Controller
 
         $cat->update($data);
 
-        return redirect()->route('home');
+        return redirect()
+                ->route('cats.index')
+                ->with('alert', [
+                    'type' => 'success',
+                    'message' =>  "Cat {$cat->name} edited successfully",
+                ]);
     }
 
     /**
@@ -149,6 +159,11 @@ class CatController extends Controller
             unlink($photo);
         }
 
-        return redirect()->route('home');
+        return redirect()
+                ->route('cats.index')
+                ->with('alert', [
+                    'type' => 'success',
+                    'message' =>  "Cat {$cat->name} deleted successfully",
+                ]);
     }
 }
