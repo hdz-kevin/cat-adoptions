@@ -44,10 +44,66 @@ Una aplicación con dos grandes áreas: la parte  de Backend y la parte de Front
 
 <hr>
 
-## Mi Diseño de la Base de Datos
+## Instalacion y uso
+1. **Clona el repositorio:**
+   ```sh
+   git clone git@github.com:hdz-kevin/cat-adoptions.git
+   cd cat-adoptions
+   ```
+2. **Instala dependencias:**
+   ```sh
+   composer install
+   npm install && npm run build
+   ```
+3. **Configura el entorno:**
+   ```sh
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   Edita el .env con los datos de tu base de datos.
 
-- Diseño Conceptual
+4. **Hacer accesible el public storage:**
+   ```sh
+   ./artisan storage:link
+   ```
+5. **Ejecuta migraciones y seeders:**
+   ```sh
+   ./artisan migrate --sed
+   ```
+6. **Inicia el servidor:**
+   ```sh
+   ./artisan serve
+   ```
+   accede a http://localhost:8000
+
+### Credenciales de prueba
+Incluye credenciales para el admin y usuarios normales:
+
+```markdown
+
+- **Admin:**  
+  Email: admin@admin.com  
+  Password: password
+
+- **Usuario normal:**  
+  Email: (elige uno de los generados en la base de datos)  
+  Password: password
+```
+
+## Funcionalidades principales
+- <input checked="" disabled="" type="checkbox"> CRUD de gatos (admin)<br>
+- <input checked="" disabled="" type="checkbox"> Registro e inicio de sesión de usuarios<br>
+- <input checked="" disabled="" type="checkbox"> Adopción de gatos (máx. 1 por usuario)<br>
+- <input checked="" disabled="" type="checkbox"> Solicitudes de adopción (max. 6 por usuario) con estados (pendiente, aprobada, rechazada)<br>
+- <input checked="" disabled="" type="checkbox"> Panel simple de perfil de usuario<br>
+- <input checked="" disabled="" type="checkbox"> Seeders y datos de prueba realistas<br>
+- <input checked="" disabled="" type="checkbox"> Validaciones y mensajes amigables<br>
+- <input checked="" disabled="" type="checkbox"> Subida real de fotos con Dropzone<br>
+
+## Documentacion extra
+
+- Diseño Conceptual de la base de datos
   <img src="./docs/conceptual-db-design.png" alt="conceptual design">
 
-- Diseño Logico
+- Diseño Logico de la base de datos
   <img src="./docs/logical-db-design.png" alt="logical design">
