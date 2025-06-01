@@ -16,7 +16,6 @@
             type="text"
             placeholder="Tu Nombre"
             value="{{ old('name') }}"
-            {{-- class="bg-[#444444] p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none" --}}
             class="input-autofill p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
             autofocus
           />

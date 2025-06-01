@@ -23,27 +23,26 @@
               $showActions = !$cat->is_adopted;
             @endphp
 
-            @if (!$approved->isEmpty())
+            @if (! $approved->isEmpty())
               <p class="text-xl text-center font-medium mt-5">Approved</p>
+              @foreach ($approved as $aR)
+                <x-adoption-request :adoptionRequest="$aR" />
+              @endforeach
             @endif
-            @foreach ($approved as $aR)
-              <x-adoption-request :adoptionRequest="$aR" />
-            @endforeach
 
-            @if (!$pending->isEmpty())
+            @if (! $pending->isEmpty())
               <p class="text-xl text-center font-medium mt-5">Pending</p>
+              @foreach ($pending as $aR)
+                <x-adoption-request :adoptionRequest="$aR" :$showActions />
+              @endforeach
             @endif
-            @foreach ($pending as $aR)
-              <x-adoption-request :adoptionRequest="$aR" :$showActions />
-            @endforeach
 
-            @if (!$rejected->isEmpty())
+            @if (! $rejected->isEmpty())
               <p class="text-[22px] text-center font-medium mt-5">Rejected</p>
+              @foreach ($rejected as $aR)
+                <x-adoption-request :adoptionRequest="$aR" />
+              @endforeach
             @endif
-            @foreach ($rejected as $aR)
-              <x-adoption-request :adoptionRequest="$aR" />
-            @endforeach
-
           </div>
         @else
           <div class="h-full flex justify-center items-center">

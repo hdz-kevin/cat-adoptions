@@ -36,7 +36,9 @@ class CatFactory extends Factory
 
         return [
             'name' => $this->faker->firstName,
-            'breed' => $this->faker->randomElement(['Siamese', 'Persian', 'Maine Coon', 'Bengal', 'Sphynx', 'Ragdoll']),
+            'breed' => $this->faker->randomElement([
+                'Siamese', 'Persian', 'Maine Coon', 'Bengal', 'Sphynx', 'Ragdoll'
+            ]),
             'age' => $this->faker->numberBetween(0, 15),
             'vaccinated' => $this->faker->boolean(80),
             'photo' => $photoPath,

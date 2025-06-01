@@ -41,3 +41,13 @@ Una aplicación con dos grandes áreas: la parte  de Backend y la parte de Front
 - Implementa subida real de fotos.
 - Añade validaciones y mensajes amigables.
 - Crea un panel de perfil para usuarios.
+
+<hr>
+
+## Mi Diseño de la Base de Datos
+
+- Diseño Conceptual
+  <img src="./docs/conceptual-db-design.png" alt="conceptual design">
+
+- Diseño Logico
+  <img src="./docs/logical-db-design.png" alt="logical design">
