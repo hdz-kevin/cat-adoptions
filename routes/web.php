@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,7 +22,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-    Route::get('/profile', fn (Request $request) => response()->json($request->user()))->name('profile');
+    Route::get('/profile/{user:username}', [ProfileController::class, 'show'])->name('profile');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

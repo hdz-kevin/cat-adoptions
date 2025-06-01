@@ -1,17 +1,14 @@
+@php
+  $textColor = $adoptionRequest->status == 'approved' ? 'text-green-500' :
+              ($adoptionRequest->status == 'rejected' ? 'text-red-400' : '');
+@endphp
+
 <div class="flex justify-between items-center border-b border-gray-700 py-2 pr-4">
   {{-- User data --}}
   <div>
-    @if ($adoptionRequest->status == 'rejected')
     {{-- Remove $adoptionRequest->user->id --}}
-      <p class="text-red-400 font-medium text-[17px] mb-1">{{ $adoptionRequest->id . ' - ' . $adoptionRequest->user->username }}</p>
-      <a href="#" class="text-gray-300 underline">{{ $adoptionRequest->user->email }}</a>
-    @elseif ($adoptionRequest->status == 'approved')
-      <p class="text-green-500 font-medium text-[17px] mb-1">{{ $adoptionRequest->id . ' - ' . $adoptionRequest->user->username }}</p>
-      <a href="#" class="text-gray-300 underline">{{ $adoptionRequest->user->email }}</a>
-    @else
-      <p class="font-medium text-[17px] mb-1">{{ $adoptionRequest->id . ' - ' . $adoptionRequest->user->username }}</p>
-      <a href="#" class="text-gray-300 underline">{{ $adoptionRequest->user->email }}</a>
-    @endif
+    <p class="{{ $textColor }} font-medium text-[17px] mb-1">{{ $adoptionRequest->id . ' - ' . $adoptionRequest->user->username }}</p>
+    <a href="{{ route('profile', $adoptionRequest->user) }}" class="text-gray-300 underline">{{ $adoptionRequest->user->email }}</a>
   </div>
   {{-- Actions --}}
   @if ($showActions)
