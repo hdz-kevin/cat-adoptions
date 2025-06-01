@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\File;
  */
 class CatFactory extends Factory
 {
+    protected array $testPhotos = [
+        'cat-1.jpg',
+        'cat-2.jpg',
+        'cat-3.jpg',
+        'cat-4.jpg',
+        'cat-5.jpg',
+        'cat-6.jpg',
+        'cat-7.jpg',
+        'cat-8.jpg',
+    ];
+    
     /**
      * Define the model's default state.
      *
@@ -17,9 +28,9 @@ class CatFactory extends Factory
      */
     public function definition(): array
     {
-        $photoPath = 'cats/'.$this->faker->uuid().'.jpeg';
+        $photoPath = 'cats/'.$this->faker->uuid().'.jpg';
         File::copy(
-            public_path('storage/cats/default.jpeg'),
+            public_path('storage/cats/test/'.$this->faker->randomElement($this->testPhotos)),
             public_path('storage/'.$photoPath)
         );
 

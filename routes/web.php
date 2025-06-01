@@ -22,7 +22,6 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-    // Profile
     Route::get('/profile', fn (Request $request) => response()->json($request->user()))->name('profile');
 });
 
@@ -33,6 +32,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
     Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
     Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');
+    // Adoption Requests
     Route::delete('/adoption-requests/{adoptionRequest}/reject', [AdoptionRequestController::class, 'reject'])
             ->name('adoption-requests.reject');
     Route::post('/adoption-requests/{adoptionRequest}/approve', [AdoptionRequestController::class, 'approve'])
@@ -45,4 +45,4 @@ Route::middleware(['auth', 'not_admin'])->group(function () {
 });
 
 Route::get('/cats', [CatController::class, 'index'])->name('cats.index');
-Route::get('/cats/{cat}', [CatController::class, 'show'])->withoutMiddleware(['auth', 'admin'])->name('cats.show');
+Route::get('/cats/{cat}', [CatController::class, 'show'])->name('cats.show');

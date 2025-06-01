@@ -22,11 +22,10 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'email' => 'admin@admin.com',
             'is_admin' => true,
-            'password' => Hash::make('admin123'),
         ]);
 
         User::factory(10)->create();
 
-        Cat::factory(50)->create();
+        Cat::factory(40)->create();
     }
 }
