@@ -1,2 +1,5 @@
 *
 !.gitignore
+!/cats/
+!/cats/test/
+!/cats/test/**
