@@ -27,11 +27,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/cats/photo-upload', [CatController::class, 'photoUpload'])->name('cats.photo.upload');
-    Route::get('/cats/create', [CatController::class, 'create'])->name('cats.create');
-    Route::post('/cats', [CatController::class, 'store'])->name('cats.store');
-    Route::get('/cats/{cat}/edit', [CatController::class, 'edit'])->name('cats.edit');
-    Route::put('/cats/{cat}', [CatController::class, 'update'])->name('cats.update');
-    Route::delete('/cats/{cat}', [CatController::class, 'destroy'])->name('cats.destroy');
+    Route::resource('cats', CatController::class)->only([
+        'create', 'store', 'edit', 'update', 'destroy'
+    ]);
     // Adoption Requests
     Route::delete('/adoption-requests/{adoptionRequest}/reject', [AdoptionRequestController::class, 'reject'])
             ->name('adoption-requests.reject');
@@ -44,5 +42,4 @@ Route::middleware(['auth', 'not_admin'])->group(function () {
     Route::post('/adoption-requests/{cat}/cancel', [AdoptionRequestController::class, 'cancel'])->name('adoption-requests.cancel');
 });
 
-Route::get('/cats', [CatController::class, 'index'])->name('cats.index');
-Route::get('/cats/{cat}', [CatController::class, 'show'])->name('cats.show');
+Route::resource('cats', CatController::class)->only(['index', 'show']);
