@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCatRequest;
 use App\Models\Cat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -66,22 +67,9 @@ class CatController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreCatRequest $request)
     {
-        $data = $request
-            ->merge(['vaccinated' => (bool) $request?->vaccinated])
-            ->validate(
-                [
-                    'name' => 'required|string|max:255',
-                    'breed' => 'required|string|max:255',
-                    'age' => 'required|numeric|min:0',
-                    'vaccinated' => 'required',
-                    'photo' => 'required'
-                ],
-                [
-                    'photo.required' => 'The cat photo is required',
-                ],
-            );
+        $data = $request->validated();
 
         $cat = Cat::create($data);
 
@@ -119,22 +107,9 @@ class CatController extends Controller
      * @param Cat $cat 
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Cat $cat)
+    public function update(StoreCatRequest $request, Cat $cat)
     {
-        $data = $request
-            ->merge(['vaccinated' => (bool) $request?->vaccinated])
-            ->validate(
-                [
-                    'name' => 'required|string|max:255',
-                    'breed' => 'required|string|max:255',
-                    'age' => 'required|numeric|min:0',
-                    'vaccinated' => 'required',
-                    'photo' => 'required',
-                ],
-                [
-                    'photo.required' => 'The cat photo is required',
-                ]
-            );
+        $data = $request->validated();
 
         $cat->update($data);
 

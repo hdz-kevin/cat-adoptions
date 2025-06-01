@@ -6,8 +6,7 @@
 <div class="flex justify-between items-center border-b border-gray-700 py-2 pr-4">
   {{-- User data --}}
   <div>
-    {{-- Remove $adoptionRequest->user->id --}}
-    <p class="{{ $textColor }} font-medium text-[17px] mb-1">{{ $adoptionRequest->id . ' - ' . $adoptionRequest->user->username }}</p>
+    <p class="{{ $textColor }} font-medium text-[17px] mb-1">{{ $adoptionRequest->user->username }}</p>
     <a href="{{ route('profile', $adoptionRequest->user) }}" class="text-gray-300 underline">{{ $adoptionRequest->user->email }}</a>
   </div>
   {{-- Actions --}}

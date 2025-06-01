@@ -34,7 +34,7 @@
               <a href="{{ route('cats.create') }}" class="mr-3 font-medium text-[18px]">Add Cat</a>
             @endif
             <a href="{{ route('profile', auth()->user()) }}" class="underline font-medium text-[18px]">
-              {{ auth()->user()->id .' - '. auth()->user()->username }}
+              {{ auth()->user()->username }}
             </a>
             <form action="{{ route('logout') }}" method="post">
               @csrf

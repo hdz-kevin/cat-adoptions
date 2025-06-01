@@ -3,7 +3,7 @@
 </div>
 <div class="text-gray-200">
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-2xl font-bold text-center">{{ $cat->id .' - '. $cat->name }}</h2>
+    <h2 class="text-2xl font-bold text-center">{{ $cat->name }}</h2>
     @if ($cat->is_adopted)
       <span class="text-[20px] font-medium text-green-500 uppercase inline-block">Adopted</span>
     @endif
